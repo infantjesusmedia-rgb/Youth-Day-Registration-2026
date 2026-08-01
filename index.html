@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="page-header">
+    <h1>Youth Day Registration</h1>
+    <p class="subtitle">Register for the event</p>
+  </header>
+
+  <div class="progress" aria-hidden="true">
+    <div class="progress-step is-active" data-step="1">
+      <span class="progress-dot">1</span>
+      <span class="progress-label">Details</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="2">
+      <span class="progress-dot">2</span>
+      <span class="progress-label">Payment</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="3">
+      <span class="progress-dot">3</span>
+      <span class="progress-label">Confirm</span>
+    </div>
+  </div>
+
+  <main class="card">
+
+    <!-- STEP 1: DETAILS -->
+    <section class="step" id="step-1" data-step="1">
+      <h2>Your details</h2>
+      <form id="details-form" novalidate>
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+          <span class="field-error" id="err-name"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="1" max="120" inputmode="numeric" required>
+            <span class="field-error" id="err-age"></span>
+          </div>
+          <div class="field">
+            <label for="community">Community</label>
+            <input type="text" id="community" name="community" required>
+            <span class="field-error" id="err-community"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+          <span class="field-hint">Your group number will be sent here</span>
+          <span class="field-error" id="err-email"></span>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+          <span class="field-error" id="err-phone"></span>
+        </div>
+
+        <div class="field">
+          <span class="field-legend">Food preference</span>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="foodPreference" value="Veg" required>
+              <span>Veg</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="foodPreference" value="Non-Veg">
+              <span>Non-Veg</span>
+            </label>
+          </div>
+          <span class="field-error" id="err-foodPreference"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Continue to payment</button>
+      </form>
+    </section>
+
+    <!-- STEP 2: PAYMENT -->
+    <section class="step" id="step-2" data-step="2" hidden>
+      <h2>Pay ₹99 to confirm your seat</h2>
+      <p class="step-description">Complete the payment below, then upload a screenshot as proof.</p>
+
+      <div class="payment-box">
+        <div class="payment-amount">₹99</div>
+
+        <!-- Shown on phones: opens the UPI app chooser directly -->
+        <a href="#" id="upi-pay-button" class="btn btn-primary btn-upi" target="_blank" rel="noopener">
+          Pay with UPI app
+        </a>
+
+        <!-- Shown on larger screens: scan with phone -->
+        <div class="upi-qr-block" id="upi-qr-block">
+          <p class="upi-qr-label">Or scan with your phone's UPI app</p>
+          <div id="upi-qr-code" class="upi-qr-code" aria-label="UPI payment QR code"></div>
+        </div>
+
+        <p class="payment-note">Paying to: <strong id="upi-id-display"></strong></p>
+      </div>
+
+      <div class="field upload-field">
+        <label for="screenshot">Upload payment screenshot</label>
+        <span class="field-hint">Required — this is how we confirm your payment</span>
+        <input type="file" id="screenshot" name="screenshot" accept="image/*" capture="environment" required>
+        <div class="upload-preview" id="upload-preview" hidden>
+          <img id="upload-preview-img" alt="Payment screenshot preview">
+          <button type="button" class="upload-remove" id="upload-remove">Remove</button>
+        </div>
+        <span class="field-error" id="err-screenshot"></span>
+      </div>
+
+      <div class="step-actions">
+        <button type="button" class="btn btn-secondary" id="back-to-step-1">Back</button>
+        <button type="button" class="btn btn-primary" id="submit-registration" disabled>
+          <span class="btn-text">Submit registration</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+      </div>
+      <p class="field-error" id="err-submit"></p>
+    </section>
+
+    <!-- STEP 3: CONFIRMATION -->
+    <section class="step" id="step-3" data-step="3" hidden>
+      <div class="confirmation">
+        <div class="confirmation-check">✓</div>
+        <h2>You're registered!</h2>
+        <p class="confirmation-name" id="confirm-name"></p>
+
+        <div class="group-reveal">
+          <span class="group-reveal-label">Your group</span>
+          <span class="group-reveal-number" id="confirm-group"></span>
+        </div>
+
+        <p class="confirmation-detail">
+          A confirmation email with your group number has been sent to
+          <strong id="confirm-email"></strong>.
+        </p>
+        <p class="confirmation-id">Registration ID: <span id="confirm-id"></span></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>Having trouble? Contact the event team.</p>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

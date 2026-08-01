@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+:root {
+  --ink: #1a2456;
+  --ink-soft: #4a5178;
+  --paper: #faf7f0;
+  --paper-raised: #ffffff;
+  --border: #e4dfd0;
+  --accent: #d97706;
+  --accent-soft: #fef3e2;
+  --success: #2f7d5f;
+  --success-soft: #e8f4ee;
+  --error: #b3261e;
+  --shadow: 0 1px 2px rgba(26, 36, 86, 0.06), 0 4px 16px rgba(26, 36, 86, 0.06);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* Progress indicator */
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--paper-raised);
+  border: 2px solid var(--border);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.progress-label {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.progress-step.is-active .progress-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+
+.progress-step.is-active .progress-label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.progress-step.is-done .progress-dot {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.progress-line {
+  width: 32px;
+  height: 2px;
+  background: var(--border);
+  margin-bottom: 20px;
+}
+
+/* Card */
+.card {
+  background: var(--paper-raised);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+}
+
+.card h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 0 0 20px;
+}
+
+.step-description {
+  color: var(--ink-soft);
+  margin-top: -12px;
+  margin-bottom: 20px;
+  font-size: 0.92rem;
+}
+
+/* Form fields */
+.field {
+  margin-bottom: 18px;
+}
+
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field-row .field {
+  flex: 1;
+}
+
+label, .field-legend {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.field-error {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--error);
+  margin-top: 4px;
+  min-height: 1em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 11px 13px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+.radio-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 0;
+  transition: all 0.15s ease;
+}
+
+.radio-option:has(input:checked) {
+  border-color: var(--ink);
+  background: var(--accent-soft);
+}
+
+.radio-option input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ink);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:disabled {
+  background: var(--border);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+.btn-primary:not(:disabled):hover {
+  opacity: 0.92;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px solid var(--border);
+}
+
+.step-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.step-actions .btn-secondary {
+  flex: 0 0 auto;
+}
+
+.step-actions .btn-primary {
+  flex: 1;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Payment box */
+.payment-box {
+  background: var(--accent-soft);
+  border: 1.5px solid #f0d9ae;
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.payment-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.btn-upi {
+  max-width: 280px;
+  margin: 0 auto;
+  background: var(--accent);
+}
+
+.upi-qr-block {
+  display: none;
+}
+
+.upi-qr-label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 16px 0 10px;
+}
+
+.upi-qr-code {
+  display: flex;
+  justify-content: center;
+}
+
+.upi-qr-code img {
+  border-radius: 8px;
+  border: 6px solid white;
+}
+
+.payment-note {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+}
+
+/* On wider screens (laptops), show QR instead of the app-redirect button,
+   since a UPI deep link can't open an app that isn't installed on a laptop. */
+@media (min-width: 720px) {
+  .btn-upi { display: none; }
+  .upi-qr-block { display: block; }
+}
+
+/* Screenshot upload */
+.upload-field input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px dashed var(--border);
+  border-radius: 9px;
+  background: var(--paper);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.upload-preview {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-preview img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+}
+
+.upload-remove {
+  background: none;
+  border: none;
+  color: var(--error);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Confirmation */
+.confirmation {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.confirmation-check {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--success-soft);
+  color: var(--success);
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.confirmation h2 {
+  margin-bottom: 4px;
+}
+
+.confirmation-name {
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+.group-reveal {
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.group-reveal-label {
+  display: block;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.group-reveal-number {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.confirmation-detail {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.confirmation-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+
+.page-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.page-footer p {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 400px) {
+  .field-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .group-reveal-number {
+    font-size: 2.8rem;
+  }
+}
