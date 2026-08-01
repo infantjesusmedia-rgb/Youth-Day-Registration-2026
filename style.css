@@ -127,6 +127,23 @@ body {
   margin: 0 0 20px;
 }
 
+.back-link {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
 .step-description {
   color: var(--ink-soft);
   margin-top: -12px;
