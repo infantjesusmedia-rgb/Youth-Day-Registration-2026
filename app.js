@@ -107,6 +107,10 @@
     goToStep(1);
   });
 
+  document.getElementById('back-to-step-1-top').addEventListener('click', function () {
+    goToStep(1);
+  });
+
   // ---------- Screenshot upload + compression ----------
 
   const screenshotInput = document.getElementById('screenshot');
